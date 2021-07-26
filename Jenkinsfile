@@ -3,6 +3,7 @@ pipeline {
         registry = 'sahana1212/jenkinsdatascience'
         registryCredential = 'sahana1212'
         dockerImage = 'jenkinsdata'
+        imagename = 'jenkinsdata'
     }
     agent any
     stages {
@@ -15,6 +16,7 @@ pipeline {
 //             }
 //         }
            stage('Building image') {
+               agent any
                steps{
                    script {
                        dockerImage = docker.build imagename
