@@ -18,25 +18,26 @@ pipeline {
            stage('Building image') {
                agent any
                steps{
-                   script {
-                       dockerImage = docker.build imagename
-                   }
+                   sh """
+                     docker build -t ${dockerImage} .
+                     docker tag ${dockerImage} ${dockerImage}:latest
+                     docker push ${dockerImage}:latest
                }
            }
-        stage('Push Docker Image to Registry') {
-            agent any
-            steps {
-                script {
-                    docker.withRegistry('',registryCredential) {
-                        dockerImage.push()
-                    }
-                }
-            }
-        }
-        stage('Remove Unused docker image') {
-            steps {
-                sh "docker rmi $registry:$BUILD_NUMBER"
-            }
-        }
+//         stage('Push Docker Image to Registry') {
+//             agent any
+//             steps {
+//                 script {
+//                     docker.withRegistry('',registryCredential) {
+//                         dockerImage.push()
+//                     }
+//                 }
+//             }
+//         }
+//         stage('Remove Unused docker image') {
+//             steps {
+//                 sh "docker rmi $registry:$BUILD_NUMBER"
+//             }
+//         }
     }
 }
