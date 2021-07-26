@@ -5,7 +5,7 @@ pipeline {
         dockerImage = 'jenkinsdata'
     }
     agent any
-     stages {
+    stages {
 //         stage('Build Docker Image') {
 //             agent any
 //             steps {
