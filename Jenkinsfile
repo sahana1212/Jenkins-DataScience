@@ -1,8 +1,8 @@
 pipeline {
     environment {
-        registry = 'israelaminu/ml_model'
-        registryCredential = 'dockerhub_id'
-        dockerImage = ''
+        registry = 'sahana1212/jenkinsdatascience'
+        registryCredential = 'sahana1212'
+        dockerImage = 'jenkinsdata'
     }
     agent any
     stages {
